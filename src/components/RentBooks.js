@@ -1,10 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
-import './Style.css'
 import NavBar from './NavBar';
 import { Table, Tag, Space, List, Avatar } from 'antd'
 
-class ToateCartile extends React.Component {
+class RentBooks extends React.Component {
 
     constructor(props) {
         super(props);
@@ -14,7 +13,7 @@ class ToateCartile extends React.Component {
     }
 
     componentDidMount() {
-        let url = "http://localhost:3001/toateCartile";
+        let url = "http://localhost:3001/cartiImprumutate";
         const { titlu } = this.props.match.params
 
         fetch(url, {
@@ -33,6 +32,13 @@ class ToateCartile extends React.Component {
         })
             .then((response) => response.json())
             .then(data => {
+
+
+                for (var i=0; i<data.length; i++) {
+                    data[i].data_imprumut = data[i].data_imprumut.substring(0, 10);
+                }
+
+
                 this.setState({ posts: data });
             });
     }
@@ -42,16 +48,16 @@ class ToateCartile extends React.Component {
 
         const columns = [
             {
-                title: 'Titlu',
-                dataIndex: 'titlu',
+                title: 'Nume',
+                dataIndex: 'nume',
                 key: 'titlu',
                 // render: (titlu) => {
                 //     return <a><Link to={`/carte/${titlu}`}>{titlu}</Link></a>
                 // }
             },
             {
-                title: 'Autor',
-                dataIndex: 'autor',
+                title: 'Titlu carte',
+                dataIndex: 'titlu',
                 key: 'autor',
             },
             {
@@ -60,15 +66,15 @@ class ToateCartile extends React.Component {
                 key: 'nr_carte',
             },
             {
-                title: 'Categorie',
-                dataIndex: 'categorie',
+                title: 'Data imprumut',
+                dataIndex: 'data_imprumut',
                 key: 'categorie',
             },
-            {
-                title: 'Editura',
-                dataIndex: 'editura',
-                key: 'editura',
-            },
+            // {
+            //     title: 'Editura',
+            //     dataIndex: 'editura',
+            //     key: 'editura',
+            // },
 
         ];
 
@@ -79,7 +85,7 @@ class ToateCartile extends React.Component {
                 <div>
                     <NavBar />
                     <div style={{marginTop: 50}}></div>
-                    <h1 style={{paddingLeft: '5%', marginTop: '50px', fontSize: '30px'}}>Cartile bibliotecii:</h1>
+                    <h1 style={{paddingLeft: '5%', marginTop: '50px', fontSize: '30px'}}>Cartile imprumutate:</h1>
                     <div>
                     <Table pagination={{ pageSize: 50}} style={{width: '200%', paddingLeft: '5%'}} columns={columns} dataSource={data} />
                     </div>
@@ -91,4 +97,4 @@ class ToateCartile extends React.Component {
 
 }
 
-export default withRouter(ToateCartile);
+export default withRouter(RentBooks);

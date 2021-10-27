@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from "react";
-
 import { useHistory, Link, withRouter } from "react-router-dom";
 import NavBar from "./NavBar";
-import './Style.css'
 
-function AddRent() {
+function FinRent() {
 
     const history = useHistory();
     const carte = React.createRef();
@@ -36,7 +34,7 @@ function AddRent() {
         fetchData()
     }, [])
     
-    function insertRent(event) {
+    function finalizeazaRent(event) {
         event.preventDefault();
         
 
@@ -49,21 +47,22 @@ function AddRent() {
 
         var verif = 1;
         if (data.carte.length === 0) {
-            verif = 0;
             alert('Nu ati completat cartea');
-        } 
-        if (data.numar_carte.length === 0) {
             verif = 0;
-            alert('Nu ati completat numarul cartii');
         } 
         if (data.user.length === 0) {
-            verif = 0;
             alert('Nu ati completat membrul');
-        } 
+            verif = 0;
+        }
+        if (data.numar_carte.length === 0) {
+            alert('Nu ati completat numarul cartii');
+            verif = 0;
+        }  
+
 
         if (verif === 1) {
             
-            let url = "http://localhost:3001/AddRent";
+            let url = "http://localhost:3001/FinRent";
             fetch(url, {
                 method: 'POST', // *GET, POST, PUT, DELETE, etc.
                 mode: 'cors', // no-cors, *cors, same-origin
@@ -81,7 +80,7 @@ function AddRent() {
         
                     if (data.status === 'ok') {
                         try {
-                            history.push("/Administrare");
+                            alert('Imprumutul a fost finalizat!');
                         } catch (e) {
                             alert(e.message);
                         }
@@ -91,27 +90,26 @@ function AddRent() {
                     }
                 });
         }
-
-        
     }
         return (
             <div>
                 <NavBar />
                 <div className="adaugaPostare" >
                     <div className="container">
-                        <h1>Adauga imprumut:</h1>
-                        <form onSubmit={insertRent}>
+                        <h1>Finalizeaza imprumut:</h1>
+                        <form onSubmit={finalizeazaRent}>
                             <div className="col-lg-8">
                                 <div className="card my-4">
                                     <h5 className="card-header">Titlu carte:</h5>
                                     <div className="card-body">
                                         <div className="form-group">
                                             <input list="carti" className="form-control" rows="1" ref={carte}></input>
-                                            <datalist id="carti" style={{fontSize: '30px'}}>
+                                            <datalist id="carti">
                                                 {titlu.map(carte => <option>{carte.titlu}</option>)}
                                             </datalist>
                                         </div>
                                     </div>
+
 
                                     <h5 className="card-header">Numar carte:</h5>
                                     <div className="card-body">
@@ -142,4 +140,4 @@ function AddRent() {
 }
 
 
-export default withRouter(AddRent);
+export default withRouter(FinRent);

@@ -1,8 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
-import './Style.css'
 import { Table, Tag, Space, List, Avatar, Descriptions } from 'antd'
-import u1 from './images/user2.png';
+import u1 from '../images/user2.png';
 import NavBar from './NavBar';
 import { Link } from "react-router-dom";
 

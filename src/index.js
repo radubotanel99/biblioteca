@@ -6,21 +6,22 @@ import {
   Route,
 } from "react-router-dom";
 import './index.css';
+import './Style.css';
 
-import FirstPage from './FirstPage'
-import AddBook from './AddBook';
-import AddUser from './AddUser';
-import AfisareUseri from './AfisareUseri';
-import Fisa from './Fisa';
-import AfisareCarte from './AfisareCarte';
-import ToateCartile from './ToateCartile';
-import RentBooks from './RentBooks';
-import FinRent from './FinRent';
-import Home from './Home';
+import FirstPage from './components/FirstPage'
+import AddBook from './components/AddBook';
+import AddUser from './components/AddUser';
+import AfisareUseri from './components/AfisareUseri';
+import Fisa from './components/Fisa';
+import AfisareCarte from './components/AfisareCarte';
+import ToateCartile from './components/ToateCartile';
+import RentBooks from './components/RentBooks';
+import FinRent from './components/FinRent';
+import Home from './components/Home';
 
 import reportWebVitals from './reportWebVitals';
-import AddRent from './AddRent';
-import AfisareCategorii from './AfisareCategorii';
+import AddRent from './components/AddRent';
+import AfisareCategorii from './components/AfisareCategorii';
 
 
 ReactDOM.render(
@@ -29,9 +30,9 @@ ReactDOM.render(
     <Router>
       <Switch>
 
-
           <Route exact path= "/" >
-            <Home />
+            {/* <Home /> */}
+            <FirstPage />
           </Route>
 
           <Route exact path= "/Administrare" >
@@ -77,7 +78,6 @@ ReactDOM.render(
           <Route path="/categorii/:categorie">
             <AfisareCategorii />  
           </Route>
-        
         
         </Switch>
     </Router>

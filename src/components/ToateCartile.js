@@ -1,10 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
-import './Style.css'
 import NavBar from './NavBar';
 import { Table, Tag, Space, List, Avatar } from 'antd'
 
-class AfisareCategorii extends React.Component {
+class ToateCartile extends React.Component {
 
     constructor(props) {
         super(props);
@@ -14,8 +13,8 @@ class AfisareCategorii extends React.Component {
     }
 
     componentDidMount() {
-        let url = "http://localhost:3001/afisareCategorii";
-        const { categorie } = this.props.match.params
+        let url = "http://localhost:3001/toateCartile";
+        const { titlu } = this.props.match.params
 
         fetch(url, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -29,7 +28,7 @@ class AfisareCategorii extends React.Component {
             redirect: 'follow', // manual, *follow, error
             referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
             // body data type must match "Content-Type" header
-            body: JSON.stringify({ categorie })
+            body: JSON.stringify({ titlu })
         })
             .then((response) => response.json())
             .then(data => {
@@ -79,6 +78,7 @@ class AfisareCategorii extends React.Component {
                 <div>
                     <NavBar />
                     <div style={{marginTop: 50}}></div>
+                    <h1 style={{paddingLeft: '5%', marginTop: '50px', fontSize: '30px'}}>Cartile bibliotecii:</h1>
                     <div>
                     <Table pagination={{ pageSize: 50}} style={{width: '200%', paddingLeft: '5%'}} columns={columns} dataSource={data} />
                     </div>
@@ -90,4 +90,4 @@ class AfisareCategorii extends React.Component {
 
 }
 
-export default withRouter(AfisareCategorii);
+export default withRouter(ToateCartile);

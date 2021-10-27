@@ -2,7 +2,6 @@ import React from "react";
 
 import { useHistory, Link } from "react-router-dom";
 import NavBar from "./NavBar";
-import './Style.css'
 
 
 

@@ -1,6 +1,5 @@
 import React from 'react';
-import './Style.css'
-import c8 from './images/buna.jpg';
+import c8 from '../images/buna.jpg';
 import NavBar from './NavBar';
 
 

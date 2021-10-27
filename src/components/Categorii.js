@@ -1,6 +1,5 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
-import './Style.css'
 import { useHistory, Link } from "react-router-dom";
 
 class Categorii extends React.Component {

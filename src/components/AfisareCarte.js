@@ -1,13 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
-
 import NavBar from './NavBar';
-import FinRent from './FinRent';
-import './Style.css'
-import { Table, Tag, Space, List, Avatar, Descriptions, Typography } from 'antd'
-import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+import { Table, Tag, Space, List, Avatar } from 'antd'
 
-class Fisa extends React.Component {
+class AfisareCarte extends React.Component {
 
     constructor(props) {
         super(props);
@@ -16,14 +12,9 @@ class Fisa extends React.Component {
         }
     }
 
-    
-
     componentDidMount() {
-        
-        let url = "http://localhost:3001/fisa";
-        
-        const { user } = this.props.match.params
-        
+        let url = "http://localhost:3001/afisareCarte";
+        const { titlu } = this.props.match.params
 
         fetch(url, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -37,22 +28,10 @@ class Fisa extends React.Component {
             redirect: 'follow', // manual, *follow, error
             referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
             // body data type must match "Content-Type" header
-            body: JSON.stringify({ nume: user })
+            body: JSON.stringify({ titlu })
         })
             .then((response) => response.json())
             .then(data => {
-                // console.log("de ce nu merge?", data)
-                // console.log(" ", data[0].data_imprumut);
-
-                for (var i=0; i<data.length; i++) {
-                    if (data[i].data_returnare === '0000-00-00 00:00:00')
-                        data[i].data_returnare = '-';
-                    else 
-                        data[i].data_returnare = data[i].data_returnare.substring(0, 10);
-                    data[i].data_imprumut = data[i].data_imprumut.substring(0, 10);
-                }
-
-
                 this.setState({ posts: data });
             });
     }
@@ -61,51 +40,53 @@ class Fisa extends React.Component {
     render() {
 
         const columns = [
-            // {
-            //     title: 'Nume',
-            //     dataIndex: 'nume',
-            //     key: 'name',
-            // },
             {
-                title: 'Titlu carte',
+                title: 'Titlu',
                 dataIndex: 'titlu',
-                key: 't',
+                key: 'titlu',
+                // render: (titlu) => {
+                //     return <a><Link to={`/carte/${titlu}`}>{titlu}</Link></a>
+                // }
             },
             {
-                title: 'Numar carte',
+                title: 'Autor',
+                dataIndex: 'autor',
+                key: 'autor',
+            },
+            {
+                title: 'Nr carte',
                 dataIndex: 'nr_carte',
-                key: 'nc',
+                key: 'nr_carte',
             },
             {
-                title: 'Data imprumut',
-                dataIndex: 'data_imprumut',
-                key: 'di',
+                title: 'Categorie',
+                dataIndex: 'categorie',
+                key: 'categorie',
             },
             {
-                title: 'Data returnare',
-                dataIndex: 'data_returnare',
-                key: 'dr',
+                title: 'Editura',
+                dataIndex: 'editura',
+                key: 'editura',
             },
 
         ];
 
         const data = this.state.posts
-        const { user }  = this.props.match.params;
-
         return (
-            
+
+            // this.state.posts.map((post) =>
                 <div>
                     <NavBar />
                     <div style={{marginTop: 50}}></div>
-                    <h4 style={{paddingLeft: '5%', marginTop: '50px', fontSize: '25px'}}>{user}:</h4>
                     <div>
                     <Table style={{width: '200%', paddingLeft: '5%'}} columns={columns} dataSource={data} />
                     </div>
                 </div>
 
+            // )
         );
     }
 
 }
 
-export default withRouter(Fisa);
+export default withRouter(AfisareCarte);

@@ -2,7 +2,6 @@ import React, { useEffect, createRef, useState } from "react";
 
 import { useHistory } from "react-router-dom";
 import NavBar from "./NavBar";
-import './Style.css'
 
 function AddBook() {
 

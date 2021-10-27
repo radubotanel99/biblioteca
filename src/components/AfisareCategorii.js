@@ -1,10 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
-import './Style.css'
 import NavBar from './NavBar';
 import { Table, Tag, Space, List, Avatar } from 'antd'
 
-class RentBooks extends React.Component {
+class AfisareCategorii extends React.Component {
 
     constructor(props) {
         super(props);
@@ -14,8 +13,8 @@ class RentBooks extends React.Component {
     }
 
     componentDidMount() {
-        let url = "http://localhost:3001/cartiImprumutate";
-        const { titlu } = this.props.match.params
+        let url = "http://localhost:3001/afisareCategorii";
+        const { categorie } = this.props.match.params
 
         fetch(url, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -29,17 +28,10 @@ class RentBooks extends React.Component {
             redirect: 'follow', // manual, *follow, error
             referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
             // body data type must match "Content-Type" header
-            body: JSON.stringify({ titlu })
+            body: JSON.stringify({ categorie })
         })
             .then((response) => response.json())
             .then(data => {
-
-
-                for (var i=0; i<data.length; i++) {
-                    data[i].data_imprumut = data[i].data_imprumut.substring(0, 10);
-                }
-
-
                 this.setState({ posts: data });
             });
     }
@@ -49,16 +41,16 @@ class RentBooks extends React.Component {
 
         const columns = [
             {
-                title: 'Nume',
-                dataIndex: 'nume',
+                title: 'Titlu',
+                dataIndex: 'titlu',
                 key: 'titlu',
                 // render: (titlu) => {
                 //     return <a><Link to={`/carte/${titlu}`}>{titlu}</Link></a>
                 // }
             },
             {
-                title: 'Titlu carte',
-                dataIndex: 'titlu',
+                title: 'Autor',
+                dataIndex: 'autor',
                 key: 'autor',
             },
             {
@@ -67,15 +59,15 @@ class RentBooks extends React.Component {
                 key: 'nr_carte',
             },
             {
-                title: 'Data imprumut',
-                dataIndex: 'data_imprumut',
+                title: 'Categorie',
+                dataIndex: 'categorie',
                 key: 'categorie',
             },
-            // {
-            //     title: 'Editura',
-            //     dataIndex: 'editura',
-            //     key: 'editura',
-            // },
+            {
+                title: 'Editura',
+                dataIndex: 'editura',
+                key: 'editura',
+            },
 
         ];
 
@@ -86,7 +78,6 @@ class RentBooks extends React.Component {
                 <div>
                     <NavBar />
                     <div style={{marginTop: 50}}></div>
-                    <h1 style={{paddingLeft: '5%', marginTop: '50px', fontSize: '30px'}}>Cartile imprumutate:</h1>
                     <div>
                     <Table pagination={{ pageSize: 50}} style={{width: '200%', paddingLeft: '5%'}} columns={columns} dataSource={data} />
                     </div>
@@ -98,4 +89,4 @@ class RentBooks extends React.Component {
 
 }
 
-export default withRouter(RentBooks);
+export default withRouter(AfisareCategorii);
