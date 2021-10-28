@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import NavBar from './NavBar';
 import { Table, Tag, Space, List, Avatar } from 'antd'
 
+
 class AfisareCarte extends React.Component {
 
     constructor(props) {

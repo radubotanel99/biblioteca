@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom'
 import NavBar from './NavBar';
 import { Table, Tag, Space, List, Avatar } from 'antd'
+import { ExportReactCSV } from './ExportReactCSV'
 
 class ToateCartile extends React.Component {
 
@@ -36,6 +37,10 @@ class ToateCartile extends React.Component {
             });
     }
 
+    // book = () => {
+    //     let books = [];
+    //     for (let i = 0; i < this)
+    // }
 
     render() {
 
@@ -68,7 +73,6 @@ class ToateCartile extends React.Component {
                 dataIndex: 'editura',
                 key: 'editura',
             },
-
         ];
 
         const data = this.state.posts
@@ -77,7 +81,9 @@ class ToateCartile extends React.Component {
             // this.state.posts.map((post) =>
                 <div>
                     <NavBar />
-                    <div style={{marginTop: 50}}></div>
+                    <div style={{marginTop: 20, marginRight: 30, float: 'right'}}>
+                        <ExportReactCSV csvData={data} fileName={'Books'} />
+                    </div>
                     <h1 style={{paddingLeft: '5%', marginTop: '50px', fontSize: '30px'}}>Cartile bibliotecii:</h1>
                     <div>
                     <Table pagination={{ pageSize: 50}} style={{width: '200%', paddingLeft: '5%'}} columns={columns} dataSource={data} />
