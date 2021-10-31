@@ -27,15 +27,15 @@ function AddUser() {
         var verif = 1;
         if (data.nume.length === 0 ) {
             alert('Nu ati completat numele si prenumele');
-            var verif = 0;
+            verif = 0;
         }
         if (data.adresa.length === 0 ) {
             alert('Nu ati completat adresa');
-            var verif = 0;
+            verif = 0;
         }
         if (data.numar_telefon.length === 0 ) {
             alert('Nu ati completat numarul de telefon');
-            var verif = 0;
+            verif = 0;
         }
 
         if (verif === 1) {
@@ -70,7 +70,6 @@ function AddUser() {
     // let url1 = "/";
     return (
         <div>
-            <NavBar />
             <div className="adaugaPostare" >
                 <div className="container">
                     <h1>Adauga un nou membru:</h1>

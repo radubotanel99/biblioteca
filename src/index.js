@@ -18,10 +18,14 @@ import ToateCartile from './components/ToateCartile';
 import RentBooks from './components/RentBooks';
 import FinRent from './components/FinRent';
 import Home from './components/Home';
+import Carti from './components/Carti';
 
 import reportWebVitals from './reportWebVitals';
 import AddRent from './components/AddRent';
 import AfisareCategorii from './components/AfisareCategorii';
+import Membrii from './components/Membrii';
+import Imprumuturi from './components/Imprumuturi';
+import CategoriiMeniu from './components/CategoriiMeniu';
 
 
 ReactDOM.render(
@@ -39,11 +43,23 @@ ReactDOM.render(
             <FirstPage />
           </Route>
 
-          <Route exact path= "/AddBook">
-            <AddBook />
+          <Route exact path= "/Carti">
+            <Carti />
           </Route>
 
-          <Route exact path= "/AddUser">
+          <Route exact path= "/Membrii">
+            <Membrii />
+          </Route>
+
+          <Route exact path= "/Imprumuturi">
+            <Imprumuturi />
+          </Route>
+
+          <Route exact path= "/Categorii">
+            <CategoriiMeniu />
+          </Route>
+
+          {/* <Route exact path= "/AddUser">
             <AddUser />
           </Route>
 
@@ -65,7 +81,7 @@ ReactDOM.render(
 
           <Route path="/RentBooks">
             <RentBooks />
-          </Route>
+          </Route> */}
 
           <Route path="/fisa/:user">
             <Fisa />

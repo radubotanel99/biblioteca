@@ -54,9 +54,6 @@ class AfisareUseri extends React.Component {
 
             
             <div>
-
-                <NavBar />
-                
                     <h1 style={{paddingLeft: '5%', marginTop: '50px', fontSize: '30px'}}>Membrii bibliotecii:</h1>
                     <div style={{height: '50px'}}>
                     <List

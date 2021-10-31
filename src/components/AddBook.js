@@ -42,18 +42,18 @@ function AddBook() {
             alert('Nu ati completat titlul')
             valid = 0;
         }
-        if (data.autor.length === 0) {
-            alert('Nu ati completat autorul')
-            valid = 0;
-        }
+        // if (data.autor.length === 0) {
+        //     alert('Nu ati completat autorul')
+        //     valid = 0;
+        // }
         if (data.numar_carte.length === 0) {
             alert('Nu ati completat numarul cartii')
             valid = 0;
         }
-        if (data.editura.length === 0) {
-            alert('Nu ati completat editura')
-            valid = 0;
-        }
+        // if (data.editura.length === 0) {
+        //     alert('Nu ati completat editura')
+        //     valid = 0;
+        // }
         if (data.categorie.length === 0) {
             alert('Nu ati completat categoria')
             valid = 0;
@@ -82,7 +82,8 @@ function AddBook() {
 
                 if (data.status === 'ok') {
                     try {
-                        history.push("/Administrare");
+                        // history.push("/Administrare");
+                        alert('Cartea a fost introdusa cu succes!')
                     } catch (e) {
                         alert(e.message);
                     }
@@ -96,63 +97,61 @@ function AddBook() {
 
 
     return (
-        <div>
-            <NavBar />
-            <div className="adaugaPostare" >
-                <div className="container">
-                    <h1>Adauga o noua carte:</h1>
-                    <form onSubmit={insertBook}>
-                        <div className="col-lg-8">
-                            <div className="card my-4">
-                                <h5 className="card-header">Titlu:</h5>
-                                <div className="card-body">
+            <div>
+                <div className="adaugaPostare" >
+                    <div className="container">
+                        <h1 className="card-header">Adauga o noua carte:</h1>
+                        <form onSubmit={insertBook}>
+                            <div className="col-lg-8">
+                                <div className="card my-4">
+                                    <h5 className="card-header">Titlu:</h5>
+                                    <div className="card-body">
 
-                                    <div className="form-group">
-                                        <input className="form-control" rows="1" ref={titlu}></input>
+                                        <div className="form-group">
+                                            <input className="form-control" rows="1" ref={titlu}></input>
+                                        </div>
+
                                     </div>
+                                    <h5 className="card-header">Autor:</h5>
+                                    <div className="card-body">
 
-                                </div>
-                                <h5 className="card-header">Autor:</h5>
-                                <div className="card-body">
+                                        <div className="form-group">
+                                            <input className="form-control" rows="3" ref={autor}></input>
+                                        </div>
 
-                                    <div className="form-group">
-                                        <input className="form-control" rows="3" ref={autor}></input>
                                     </div>
+                                    <h5 className="card-header">Numar carte:</h5>
+                                    <div className="card-body">
 
-                                </div>
-                                <h5 className="card-header">Numar carte:</h5>
-                                <div className="card-body">
-
-                                    <div className="form-group">
-                                        <input type="number" className="form-control" rows="10" ref={numar_carte}></input>
+                                        <div className="form-group">
+                                            <input type="number" className="form-control" rows="10" ref={numar_carte}></input>
+                                        </div>
                                     </div>
-                                </div>
-                                <h5 className="card-header">Editura:</h5>
-                                <div className="card-body">
+                                    <h5 className="card-header">Editura:</h5>
+                                    <div className="card-body">
 
-                                    <div className="form-group">
-                                        <input className="form-control" rows="10" ref={editura}></input>
+                                        <div className="form-group">
+                                            <input className="form-control" rows="10" ref={editura}></input>
+                                        </div>
                                     </div>
-                                </div>
-                                <h5 className="card-header">Categorie:</h5>
-                                <div className="card-body">
+                                    <h5 className="card-header">Categorie:</h5>
+                                    <div className="card-body">
 
-                                    <div className="form-group">
-                                        <input list="categorii" className="form-control" rows="10" ref={categorie}></input>
-                                        <datalist id="categorii">
-                                            {categorii.map(cat => <option>{cat.categorie}</option>)}
-                                        </datalist>
+                                        <div className="form-group">
+                                            <input list="categorii" className="form-control" rows="10" ref={categorie}></input>
+                                            <datalist id="categorii">
+                                                {categorii.map(cat => <option>{cat.categorie}</option>)}
+                                            </datalist>
+                                        </div>
+
                                     </div>
-
                                 </div>
                             </div>
-                        </div>
-                        <button type="submit" className="btn btn-primary" id="">Submit</button>
-                    </form>
+                            <button type="submit" className="btn btn-primary" id="">Submit</button>
+                        </form>
+                    </div>
                 </div>
-
             </div>
-        </div>
     );
 }
 

@@ -5,6 +5,7 @@ import Categorii from './Categorii';
 import AddRent from './AddRent'
 
 import c8 from '../images/try.jfif';
+import Contact from './Contact';
 
 
 function FirstPage() {
@@ -37,7 +38,8 @@ function FirstPage() {
                     </div>
                 </div>
                 <Search />
-                <Categorii />
+                <Contact />
+                {/* <Categorii /> */}
                 {/* <button onClick={handleClick} type="submit" className="btn btn-primary" id="">TEST</button> */}
                 {/* {isOpen && <AddRent />} */}
             </div>

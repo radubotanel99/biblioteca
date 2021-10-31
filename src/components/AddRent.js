@@ -95,7 +95,6 @@ function AddRent() {
     }
         return (
             <div>
-                <NavBar />
                 <div className="adaugaPostare" >
                     <div className="container">
                         <h1>Adauga imprumut:</h1>

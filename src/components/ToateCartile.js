@@ -79,17 +79,17 @@ class ToateCartile extends React.Component {
         return (
 
             // this.state.posts.map((post) =>
+            <div>
                 <div>
-                    <NavBar />
                     <div style={{marginTop: 20, marginRight: 30, float: 'right'}}>
                         <ExportReactCSV csvData={data} fileName={'Books'} />
                     </div>
                     <h1 style={{paddingLeft: '5%', marginTop: '50px', fontSize: '30px'}}>Cartile bibliotecii:</h1>
                     <div>
-                    <Table pagination={{ pageSize: 50}} style={{width: '200%', paddingLeft: '5%'}} columns={columns} dataSource={data} />
+                    <Table pagination={false} style={{width: '200%', paddingLeft: '5%'}} columns={columns} dataSource={data} />
                     </div>
                 </div>
-
+            </div>
             // )
         );
     }

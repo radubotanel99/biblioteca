@@ -202,7 +202,6 @@ app.post ('/FinRent', (req, res) => {
 
                   var sql = 'UPDATE rent SET data_returnare=? WHERE id_user=? AND id_book=?';
                   var values = [data_de_azi, result1[0].id_user, result2[0].id_book];
-                  console.log(values);
                   con.query(sql, values, function(err, result) {
                     if(err) throw err;
                     res.send({status: 'ok'})
@@ -214,6 +213,73 @@ app.post ('/FinRent', (req, res) => {
       }
     })
 });
+
+app.post ('/AddCategory', (req, res) => {
+
+  var verifCat = "select * from category where categorie=?"
+  var cat = [req.body.categorie]
+  con.query(verifCat, cat, function(err, result1) {
+    if(err) throw err;
+    else {
+      if (result1.length !== 0) res.send({status: 'Aceasta categorie exista!'})
+      else {
+        var sqlCat = "INSERT INTO category (categorie) VALUES ?"
+        var VALUES = [[req.body.categorie]];
+        con.query(sqlCat, [VALUES], function(err, result) {
+        if(err) throw err
+        res.send({status: 'ok'});
+      })
+      }
+    }
+  })
+})
+
+app.post('/DeleteCategory', (req, res) => {
+
+  var verifCat = 'select * from category where categorie=?'
+  var ctgr = [req.body.categorie];
+  con.query (verifCat, ctgr, function (err, result1) {
+    if(result1.length === 0) res.send({status: 'Nu exista aceasta categorie'})
+    else {
+      var stergeDinRent = 'delete from rent where id_book = ( select id_book where categorie = (select id_categorie from category where categorie=?))'
+      var cat = [req.body.categorie]
+      con.query (stergeDinRent, cat, function(err, result) {
+        var stergeDinBook = 'delete from book where categorie = (select id_categorie from category where categorie=?)'
+        con.query(stergeDinBook, cat, function(err, result2) {
+          var stergeDinCategory = 'delete from category where categorie=?'
+          con.query(stergeDinCategory, cat, function(err, result3) {
+            res.send({status: 'ok'});
+          })
+        })
+      })
+    }
+  })
+})
+
+app.post('/DeleteBook', (req, res) => {
+
+  var verif_carte = "select * from book where titlu=? and nr_carte=?";
+  var var_carte = [req.body.carte, req.body.numar_carte];
+  con.query(verif_carte, var_carte, function(err, result2) {
+    if(err) throw err;
+    if(result2.length === 0) {
+      res.send({status: 'Aceasta carte nu exista!'});
+    }
+    else {
+      var sql = "Delete from rent where id_book = (select id_book from book where nr_carte=?)"
+      var values = [[req.body.numar_carte]]
+      con.query(sql, values, function (err, result) {
+        if (err) throw err;
+        var stergeCarte = "Delete from book where nr_carte=?";
+        var nrCarte = [req.body.numar_carte];
+        con.query(stergeCarte, nrCarte, function (err, resultStergere) {
+          if (err) throw err;
+          res.send({status: 'ok'});
+        })
+      })
+    }
+  })
+})
 
 
 app.post('/afisareUseri', (req, res) => {

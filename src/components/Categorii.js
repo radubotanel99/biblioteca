@@ -39,7 +39,8 @@ class Categorii extends React.Component {
         console.log (data);
         return (
 
-            <div className="categoriesPozition" style={{marginTop: '50px'}}>
+            // <div className="categoriesPozition" style={{marginTop: '50px'}}>
+            <div style={{marginLeft: '10%', marginTop: '5%'}}>
                 <div className="col-md-4">
                     <div className="card my-4">
                         <h5 className="card-header">Categorii:</h5>

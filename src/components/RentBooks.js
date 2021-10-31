@@ -83,7 +83,6 @@ class RentBooks extends React.Component {
 
             // this.state.posts.map((post) =>
                 <div>
-                    <NavBar />
                     <div style={{marginTop: 50}}></div>
                     <h1 style={{paddingLeft: '5%', marginTop: '50px', fontSize: '30px'}}>Cartile imprumutate:</h1>
                     <div>

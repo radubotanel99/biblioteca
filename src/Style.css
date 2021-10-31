@@ -11274,6 +11274,12 @@ textarea.form-control-lg {
   }
 }
 
+.subMenuPosition {
+  display: 'flex'; 
+  flex-direction: 'row';
+  /* margin: 'auto';  */
+  /* width: 75%;  */
+}
 
 .searchPozition {
   position: absolute;
@@ -11296,7 +11302,7 @@ textarea.form-control-lg {
 
 .widgetPozition {
   position: absolute;
-  top: 65.5%;
+  top: 45.5%;
   left: 66%;
   width: 1100px;
 }
