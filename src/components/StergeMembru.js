@@ -3,42 +3,41 @@ import { useHistory, Link } from "react-router-dom";
 
 
 
-function StergeCategorie() {
+function StergeMembru() {
 
     const history = useHistory();
 
-    const categorie = React.createRef();
-    
-    const [categorii, setCategorii] = useState([])
+    const membru = createRef();
+    const [membrii, setMembru] = useState([])
 
     useEffect(() => {
         const fetchData = async () => {
-            const resp = await fetch('http://localhost:3001/categorie')
+            const resp = await fetch('http://localhost:3001/membru')
             const data = await resp.json()
-            setCategorii(data)
+            setMembru(data)
         }
         fetchData()
     }, [])
 
 
-    function deleteCategory(event) {
+    function deleteMember(event) {
 
         event.preventDefault();
         const data = {
 
-            categorie: categorie.current.value,
+            membru: membru.current.value,
         }
 
         var verif = 1;
-        if (data.categorie.length === 0 ) {
-            alert('Nu ati completat categoria!');
+        if (data.membru.length === 0 ) {
+            alert('Nu ati completat membrul!');
             verif = 0;
         }
 
         if (verif === 1) {
 
 
-            let url = "http://localhost:3001/DeleteCategory";
+            let url = "http://localhost:3001/DeleteMember";
             fetch(url, {
                 method: 'POST', // *GET, POST, PUT, DELETE, etc.
                 mode: 'cors', // no-cors, *cors, same-origin
@@ -55,7 +54,7 @@ function StergeCategorie() {
                 .then(data => {
                     if (data.status === 'ok') {
                         try {
-                            alert('Categoria a fost stearsa.');
+                            alert('Membrul a fost sters');
                             window.location.reload(false);
                         } catch (e) {
                             alert(e.message);
@@ -70,18 +69,18 @@ function StergeCategorie() {
         <div>
             <div className="adaugaPostare" >
                 <div className="container">
-                    <h1>Sterge categorie:</h1>
-                    <form onSubmit={deleteCategory}>
+                    <h1>Sterge membru:</h1>
+                    <form onSubmit={deleteMember}>
                         <div className="col-lg-8">
                             <div className="card my-4">
-                                <h5 className="card-header">Categorie:</h5>
+                                <h5 className="card-header">Membru:</h5>
                                 <div className="card-body">
 
                                     <div className="form-group">
-                                        <input list="categorii" className="form-control" rows="1" ref={categorie}></input>
-                                        <datalist id="categorii">
-                                            {categorii.map(cat => <option>{cat.categorie}</option>)}
-                                        </datalist>
+                                        <input list="membrii" className="form-control" rows="1" ref={membru}></input>
+                                        <datalist id="membrii" >
+                                                {membrii.map(mem => <option>{mem.nume}</option>)}
+                                            </datalist>
 
                                     </div>
                                 </div>
@@ -96,4 +95,4 @@ function StergeCategorie() {
     );
 }
 
-export default StergeCategorie;
+export default StergeMembru;

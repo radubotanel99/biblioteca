@@ -81,6 +81,7 @@ function FinRent() {
                     if (data.status === 'ok') {
                         try {
                             alert('Imprumutul a fost finalizat!');
+                            window.location.reload(false);
                         } catch (e) {
                             alert(e.message);
                         }

@@ -80,7 +80,9 @@ function AddRent() {
         
                     if (data.status === 'ok') {
                         try {
-                            history.push("/Administrare");
+                            // history.push("/Administrare");
+                            alert('Cartea a fost imprumutata!')
+                            window.location.reload(false);
                         } catch (e) {
                             alert(e.message);
                         }

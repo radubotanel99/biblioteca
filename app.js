@@ -74,9 +74,8 @@ app.post('/AddBook', (req, res) => {
               var VALUES = [[req.body.categorie]]
               con.query(sql, [VALUES], function (err, result) {
                 if(err) throw err;
-                var sql1 = "INSERT INTO book (titlu, autor,	nr_carte, editura, categorie) VALUES ?";
-              
-                var VALUES = [[req.body.titlu, req.body.autor, req.body.numar_carte, req.body.editura, result[0].id_categorie]]
+                var sql1 = "INSERT INTO book (titlu, autor,	nr_carte, editura, categorie, pret) VALUES ?";
+                var VALUES = [[req.body.titlu, req.body.autor, req.body.numar_carte, req.body.editura, result[0].id_categorie, req.body.pret]]
                 con.query(sql1, [VALUES], function (err, result) {
                   if (err) throw err;
                   console.log("1 record inserted here");
@@ -256,6 +255,26 @@ app.post('/DeleteCategory', (req, res) => {
   })
 })
 
+app.post('/DeleteMember', (req, res) => {
+  var verif_membru = "select * from user where nume=?";
+  var var_membru = [req.body.membru];
+  con.query(verif_membru, var_membru, function(err, result) {
+    if (err) throw err;
+    if(result.length === 0) res.send({status: 'Acest membru nu exista!'})
+    else {
+      var deleteFromRent = "delete from rent where id_user = (select id_user from user where nume=?)";
+      con.query(deleteFromRent, var_membru, function(err, result1) {
+        if(err) throw err;
+        var stergere = "delete from user where nume=?";
+        con.query(stergere, var_membru, function(err, rez) {
+          if (err) throw err;
+          res.send({status: 'ok'});
+        })
+      })
+    }
+  })
+})
+
 app.post('/DeleteBook', (req, res) => {
 
   var verif_carte = "select * from book where titlu=? and nr_carte=?";
@@ -368,7 +387,7 @@ app.post('/cartiImprumutate', (req, res) => {
 
 app.post('/categorii', (req, res) => {
 
-  var sql1 = "SELECT categorie FROM category";
+  var sql1 = "SELECT categorie FROM category order by categorie";
   con.query(sql1, function (err, result) {
     if (err) throw err;
     res.send(result);

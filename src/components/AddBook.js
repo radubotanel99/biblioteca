@@ -12,6 +12,7 @@ function AddBook() {
     const numar_carte = createRef();
     const editura = createRef();
     const categorie = createRef();
+    const pret = createRef();
 
     const [categorii, setCategorii] = useState([])
 
@@ -34,6 +35,7 @@ function AddBook() {
             numar_carte: numar_carte.current.value,
             editura : editura.current.value,
             categorie: categorie.current.value,
+            pret: pret.current.value,
         }
 
         var valid = 1;
@@ -56,6 +58,10 @@ function AddBook() {
         // }
         if (data.categorie.length === 0) {
             alert('Nu ati completat categoria')
+            valid = 0;
+        }
+        if (data.pret.length === 0) {
+            alert('Nu ati completat pretul')
             valid = 0;
         }
 
@@ -84,6 +90,7 @@ function AddBook() {
                     try {
                         // history.push("/Administrare");
                         alert('Cartea a fost introdusa cu succes!')
+                        window.location.reload(false);
                     } catch (e) {
                         alert(e.message);
                     }
@@ -144,6 +151,13 @@ function AddBook() {
                                             </datalist>
                                         </div>
 
+                                    </div>
+                                    <h5 className="card-header">Pret:</h5>
+                                    <div className="card-body">
+
+                                        <div className="form-group">
+                                            <input type="number" className="form-control" rows="10" ref={pret}></input>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

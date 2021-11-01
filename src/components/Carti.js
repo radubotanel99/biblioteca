@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import NavBar from "./NavBar";
 import Buton from "./Buton";
-import '../Style.css'; 
 import AddBook from "./AddBook";
 import ToateCartile from "./ToateCartile";
 import RentBooks from "./RentBooks";
 import StergeCarte from "./StergeCarte";
 import { Button } from "antd/lib/radio";
 import TitluPagini from "./TitluPagini";
+import Poza from "./Poza";
 
 export default function Carti () {
+
+    const [PozaIsOpen, setPozaIsOpen] = useState(true)
 
     const [AddBookIsOpen, setAddBookIsOpen] = useState(false)
     const AddBookClick = () => {
@@ -17,6 +19,7 @@ export default function Carti () {
         setDeleteBookIsOpen(false)
         setAllBooksIsOpen(false)
         setRentBooksIsOpen(false)
+        setPozaIsOpen(false)
     }
     const [DeleteBookIsOpen, setDeleteBookIsOpen] = useState(false)
     const DeleteBookClick = () => {
@@ -24,6 +27,7 @@ export default function Carti () {
         setDeleteBookIsOpen(true)
         setAllBooksIsOpen(false)
         setRentBooksIsOpen(false)
+        setPozaIsOpen(false)
     }
     const [AllBooksIsOpen, setAllBooksIsOpen] = useState(false)
     const AllBooksClick = () => {
@@ -31,6 +35,7 @@ export default function Carti () {
         setDeleteBookIsOpen(false)
         setAllBooksIsOpen(true)
         setRentBooksIsOpen(false)
+        setPozaIsOpen(false)
     }
     const [RentBooksIsOpen, setRentBooksIsOpen] = useState(false)
     const RentBooksClick = () => {
@@ -38,13 +43,14 @@ export default function Carti () {
         setDeleteBookIsOpen(false)
         setAllBooksIsOpen(false)
         setRentBooksIsOpen(true)
+        setPozaIsOpen(false)
     }
 
     return (
         <div>
             <NavBar />
             <TitluPagini titlu="Carti" />
-            <div style={{margin: 'auto', width: "60%", display: 'flex', flexDirection: 'row'}} >
+            <div className="subMeniu" >
                 <Buton onClick={AddBookClick} name="Adauga Carte"/>
                 <Buton onClick={DeleteBookClick} name="Sterge Carte"/>
                 <Buton onClick={AllBooksClick} name="Toate Cartile"/>
@@ -57,6 +63,10 @@ export default function Carti () {
                 {RentBooksIsOpen && <RentBooks />}
                 {AddBookIsOpen && <AddBook />}
                 {DeleteBookIsOpen && <StergeCarte />}
+                <div>
+                    {PozaIsOpen && <Poza />}
+                </div>
+                
             </div>
             
         </div>

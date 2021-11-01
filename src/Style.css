@@ -11424,3 +11424,18 @@ textarea.form-control-lg {
 option {
   font-size: 15px;
 }
+
+.subMeniu {
+  justify-content: center;
+  margin: auto;
+  /* width: 50%; */
+  display: flex;
+  flex-direction: row;
+}
+
+.pozaFundal {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+}

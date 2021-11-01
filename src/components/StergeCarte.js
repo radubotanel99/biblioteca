@@ -61,7 +61,7 @@ function StergeCarte() {
                     if (data.status === 'ok') {
                         try {
                             alert('Cartea a fost stearsa!');
-                            history.push('/Carti');
+                            window.location.reload(false);
                         } catch (e) {
                             alert(e.message);
                         }

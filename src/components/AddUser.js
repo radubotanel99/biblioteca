@@ -58,7 +58,9 @@ function AddUser() {
                 .then(data => {
                     if (data.status === 'ok') {
                         try {
-                            history.push("/Administrare");
+                            // history.push("/Administrare");
+                            alert('Membrul a fost adaugat!')
+                            window.location.reload(false);
                         } catch (e) {
                             alert(e.message);
                         }

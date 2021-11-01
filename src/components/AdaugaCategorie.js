@@ -1,14 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 
 import { useHistory, Link } from "react-router-dom";
-import NavBar from "./NavBar";
-
 
 
 function AdaugaCategorie() {
 
     const history = useHistory();
-
     const categorie = React.createRef();
 
     function insertCategory(event) {
@@ -45,7 +42,8 @@ function AdaugaCategorie() {
                 .then(data => {
                     if (data.status === 'ok') {
                         try {
-                            alert('Categoria a fost introdusa. Va rugam dati refresh paginii!');
+                            alert('Categoria a fost introdusa.');
+                            window.location.reload(false);
                         } catch (e) {
                             alert(e.message);
                         }
