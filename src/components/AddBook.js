@@ -90,7 +90,7 @@ function AddBook() {
                     try {
                         // history.push("/Administrare");
                         alert('Cartea a fost introdusa cu succes!')
-                        window.location.reload(false);
+                        // window.location.reload(false);
                     } catch (e) {
                         alert(e.message);
                     }
@@ -156,7 +156,7 @@ function AddBook() {
                                     <div className="card-body">
 
                                         <div className="form-group">
-                                            <input type="number" className="form-control" rows="10" ref={pret}></input>
+                                            <input className="form-control" rows="10" ref={pret}></input>
                                         </div>
                                     </div>
                                 </div>

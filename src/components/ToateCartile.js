@@ -73,6 +73,11 @@ class ToateCartile extends React.Component {
                 dataIndex: 'editura',
                 key: 'editura',
             },
+            {
+                title: 'Pret',
+                dataIndex: 'pret',
+                key: 'pret',
+            },
         ];
 
         const data = this.state.posts
@@ -86,7 +91,7 @@ class ToateCartile extends React.Component {
                     </div>
                     <h1 style={{paddingLeft: '5%', marginTop: '50px', fontSize: '30px'}}>Cartile bibliotecii:</h1>
                     <div>
-                    <Table pagination={false} style={{width: '200%', paddingLeft: '5%'}} columns={columns} dataSource={data} />
+                    <Table pagination={false} style={{width: '200%', paddingLeft: '5%', paddingRight: '2%'}} columns={columns} dataSource={data} />
                     </div>
                 </div>
             </div>
