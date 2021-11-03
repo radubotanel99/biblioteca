@@ -2,7 +2,6 @@ import React from 'react';
 
 export default function Contact() {
     return (
-
         <div className="widgetPozition">
             <div className="col-md-4">
                 <div className="card my-4">
@@ -13,9 +12,7 @@ export default function Contact() {
                         <p>(Radu Botanel - radu.botanel99@e-uvt.ro)</p>
                     </div>
                 </div>
-
             </div>
-
         </div>
     );
 }

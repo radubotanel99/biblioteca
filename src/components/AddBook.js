@@ -1,12 +1,6 @@
 import React, { useEffect, createRef, useState } from "react";
 
-import { useHistory } from "react-router-dom";
-import NavBar from "./NavBar";
-
-function AddBook() {
-
-    const history = useHistory(); 
-
+export default function AddBook() {
     const titlu = createRef();
     const autor = createRef();
     const numar_carte = createRef();
@@ -29,7 +23,6 @@ function AddBook() {
         event.preventDefault();
         
         const data = {
-
             titlu: titlu.current.value,
             autor: autor.current.value,
             numar_carte: numar_carte.current.value,
@@ -39,7 +32,6 @@ function AddBook() {
         }
 
         var valid = 1;
-
         if (data.titlu.length === 0) {
             alert('Nu ati completat titlul')
             valid = 0;
@@ -66,29 +58,22 @@ function AddBook() {
         }
 
         if (valid === 1) {
-
-
             let url = "http://localhost:3001/AddBook";
-
-
         fetch(url, {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            mode: 'cors', // no-cors, *cors, same-origin
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', // include, *same-origin, omit
+            method: 'POST', 
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
             headers: {
                 'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            redirect: 'follow', // manual, *follow, error
-            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: JSON.stringify(data) // body data type must match "Content-Type" header
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer', 
+            body: JSON.stringify(data)
         }).then(response => response.json())
             .then(data => {
-
                 if (data.status === 'ok') {
                     try {
-                        // history.push("/Administrare");
                         alert('Cartea a fost introdusa cu succes!')
                         // window.location.reload(false);
                     } catch (e) {
@@ -97,12 +82,8 @@ function AddBook() {
                 }
                 else alert(data.status);
             });
-
         }
-
     }
-
-
     return (
             <div>
                 <div className="adaugaPostare" >
@@ -113,48 +94,39 @@ function AddBook() {
                                 <div className="card my-4">
                                     <h5 className="card-header">Titlu:</h5>
                                     <div className="card-body">
-
                                         <div className="form-group">
                                             <input className="form-control" rows="1" ref={titlu}></input>
                                         </div>
-
                                     </div>
                                     <h5 className="card-header">Autor:</h5>
                                     <div className="card-body">
-
                                         <div className="form-group">
                                             <input className="form-control" rows="3" ref={autor}></input>
                                         </div>
-
                                     </div>
                                     <h5 className="card-header">Numar carte:</h5>
                                     <div className="card-body">
-
                                         <div className="form-group">
                                             <input type="number" className="form-control" rows="10" ref={numar_carte}></input>
                                         </div>
                                     </div>
                                     <h5 className="card-header">Editura:</h5>
                                     <div className="card-body">
-
                                         <div className="form-group">
                                             <input className="form-control" rows="10" ref={editura}></input>
                                         </div>
                                     </div>
                                     <h5 className="card-header">Categorie:</h5>
                                     <div className="card-body">
-
                                         <div className="form-group">
                                             <input list="categorii" className="form-control" rows="10" ref={categorie}></input>
                                             <datalist id="categorii">
                                                 {categorii.map(cat => <option>{cat.categorie}</option>)}
                                             </datalist>
                                         </div>
-
                                     </div>
                                     <h5 className="card-header">Pret:</h5>
                                     <div className="card-body">
-
                                         <div className="form-group">
                                             <input className="form-control" rows="10" ref={pret}></input>
                                         </div>
@@ -168,5 +140,3 @@ function AddBook() {
             </div>
     );
 }
-
-export default AddBook;

@@ -1,21 +1,14 @@
-import React, {useState} from "react";
+import React from "react";
 
-import { useHistory, Link } from "react-router-dom";
+export default function AdaugaCategorie() {
 
-
-function AdaugaCategorie() {
-
-    const history = useHistory();
     const categorie = React.createRef();
-
     function insertCategory(event) {
 
         event.preventDefault();
         const data = {
-
             categorie: categorie.current.value,
         }
-
         var verif = 1;
         if (data.categorie.length === 0 ) {
             alert('Nu ati completat categoria!');
@@ -23,21 +16,18 @@ function AdaugaCategorie() {
         }
 
         if (verif === 1) {
-
-
             let url = "http://localhost:3001/AddCategory";
             fetch(url, {
-                method: 'POST', // *GET, POST, PUT, DELETE, etc.
-                mode: 'cors', // no-cors, *cors, same-origin
-                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', // include, *same-origin, omit
+                method: 'POST',
+                mode: 'cors', 
+                cache: 'no-cache',
+                credentials: 'same-origin',
                 headers: {
                     'Content-Type': 'application/json'
-                    // 'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                redirect: 'follow', // manual, *follow, error
-                referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-                body: JSON.stringify(data) // body data type must match "Content-Type" header
+                redirect: 'follow',
+                referrerPolicy: 'no-referrer', 
+                body: JSON.stringify(data) 
             }).then(response => response.json())
                 .then(data => {
                     if (data.status === 'ok') {
@@ -63,7 +53,6 @@ function AdaugaCategorie() {
                             <div className="card my-4">
                                 <h5 className="card-header">Categorie:</h5>
                                 <div className="card-body">
-
                                     <div className="form-group">
                                         <input className="form-control" rows="1" ref={categorie}></input>
                                     </div>
@@ -73,10 +62,7 @@ function AdaugaCategorie() {
                         <button type="submit" className="btn btn-primary" id="">Submit</button>
                     </form>
                 </div>
-
             </div>
         </div>
     );
 }
-
-export default AdaugaCategorie;

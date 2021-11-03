@@ -1,21 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import NavBar from './NavBar';
 import Search from './Search';
-import Categorii from './Categorii';
-import AddRent from './AddRent'
-
 import c8 from '../images/try.jfif';
 import Contact from './Contact';
 
-
-function FirstPage() {
-
-    const [isOpen, setIsOpen] = useState(false)
-
-    const handleClick = () => {
-        setIsOpen(true)
-    }
-
+export default function FirstPage() {
     return (
         <div>
             <NavBar />
@@ -27,11 +16,8 @@ function FirstPage() {
                                 <div className="card-body">
                                     <h2 className="card-title">Gestioneaza-ti biblioteca!</h2>
                                     <p className="card-text">Aceasta aplicatie va permite sa va gesitionati biblioteca.</p>
-
                                     <img className="card-img-top" src={c8} alt="munte" />
-
                                 </div>
-
                                 <div className="card-footer text-muted">Created on September 2021 by Radu Botanel</div>
                             </div>
                         </div>
@@ -39,15 +25,7 @@ function FirstPage() {
                 </div>
                 <Search />
                 <Contact />
-                {/* <Categorii /> */}
-                {/* <button onClick={handleClick} type="submit" className="btn btn-primary" id="">TEST</button> */}
-                {/* {isOpen && <AddRent />} */}
             </div>
-
         </div>
-
     );
 }
-
-
-export default FirstPage;

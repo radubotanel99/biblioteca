@@ -1,34 +1,28 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
-import NavBar from './NavBar';
-import { Table, Tag, Space, List, Avatar } from 'antd'
+import { Table } from 'antd'
 import { ExportReactCSV } from './ExportReactCSV'
 
 class ToateCartile extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
             posts: []
         }
     }
-
     componentDidMount() {
         let url = "http://localhost:3001/toateCartile";
         const { titlu } = this.props.match.params
-
         fetch(url, {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            mode: 'cors', // no-cors, *co   rs, same-origin
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', // include, *same-origin, omit
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
             headers: {
                 'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            redirect: 'follow', // manual, *follow, error
-            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            // body data type must match "Content-Type" header
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer', 
             body: JSON.stringify({ titlu })
         })
             .then((response) => response.json())
@@ -36,14 +30,7 @@ class ToateCartile extends React.Component {
                 this.setState({ posts: data });
             });
     }
-
-    // book = () => {
-    //     let books = [];
-    //     for (let i = 0; i < this)
-    // }
-
     render() {
-
         const columns = [
             {
                 title: 'Titlu',
@@ -79,11 +66,12 @@ class ToateCartile extends React.Component {
                 key: 'pret',
             },
         ];
-
-        const data = this.state.posts
+        this.state.posts.forEach(element => {
+            
+        });
+        // const x = this.state.posts[0];
+        const data = this.state.posts;
         return (
-
-            // this.state.posts.map((post) =>
             <div>
                 <div>
                     <div style={{marginTop: 20, marginRight: 30, float: 'right'}}>
@@ -95,10 +83,7 @@ class ToateCartile extends React.Component {
                     </div>
                 </div>
             </div>
-            // )
         );
     }
-
 }
-
 export default withRouter(ToateCartile);

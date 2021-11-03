@@ -1,15 +1,10 @@
 import React, {useEffect, useState} from "react";
-import { useHistory, Link, withRouter } from "react-router-dom";
 
-function StergeCarte() {
-
-    const history = useHistory();
+export default function StergeCarte() {
     const carte = React.createRef();
-    const user = React.createRef();
     const numar_carte = React.createRef();
 
     const [titlu, setTitlu] = useState([])
-    const [membru, setMembru] = useState([])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,12 +19,10 @@ function StergeCarte() {
     
     function stergeCarte(event) {
         event.preventDefault();
-        
         const data = {
             carte: carte.current.value,
             numar_carte: numar_carte.current.value
         }
-
         var verif = 1;
         if (data.carte.length === 0) {
             alert('Nu ati completat cartea');
@@ -38,11 +31,8 @@ function StergeCarte() {
         if (data.numar_carte.length === 0) {
             alert('Nu ati completat numarul cartii');
             verif = 0;
-        }  
-
-
+        }
         if (verif === 1) {
-            
             let url = "http://localhost:3001/DeleteBook";
             fetch(url, {
                 method: 'POST',
@@ -57,7 +47,6 @@ function StergeCarte() {
                 body: JSON.stringify(data) 
             }).then(response => response.json())
                 .then(data => {
-        
                     if (data.status === 'ok') {
                         try {
                             alert('Cartea a fost stearsa!');
@@ -89,8 +78,6 @@ function StergeCarte() {
                                             </datalist>
                                         </div>
                                     </div>
-
-
                                     <h5 className="card-header">Numar carte:</h5>
                                     <div className="card-body">
                                         <div className="form-group">
@@ -102,11 +89,7 @@ function StergeCarte() {
                             <button type="submit" className="btn btn-primary" id="">Submit</button>
                         </form>
                     </div>
-    
                 </div>
             </div>
         );
 }
-
-
-export default withRouter(StergeCarte);

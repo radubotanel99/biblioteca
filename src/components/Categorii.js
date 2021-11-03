@@ -1,31 +1,26 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
-import { useHistory, Link } from "react-router-dom";
 
 class Categorii extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
             posts: []
         }
     }
-
     componentDidMount() {
         let url = "http://localhost:3001/categorii";
         const x = 4;
         fetch(url, {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            mode: 'cors', // no-cors, *co   rs, same-origin
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', // include, *same-origin, omit
+            method: 'POST', 
+            mode: 'cors', 
+            cache: 'no-cache', 
+            credentials: 'same-origin', 
             headers: {
                 'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            redirect: 'follow', // manual, *follow, error
-            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            // body data type must match "Content-Type" header
+            redirect: 'follow', 
+            referrerPolicy: 'no-referrer', 
             body: JSON.stringify({x})
         })
             .then((response) => response.json())
@@ -34,12 +29,9 @@ class Categorii extends React.Component {
             });
     }
     render () {
-
         const data = this.state.posts;
         console.log (data);
         return (
-
-            // <div className="categoriesPozition" style={{marginTop: '50px'}}>
             <div style={{marginLeft: '10%', marginTop: '5%'}}>
                 <div className="col-md-4">
                     <div className="card my-4">
@@ -58,7 +50,5 @@ class Categorii extends React.Component {
             </div>
         );
     }
-    
 }
-
 export default withRouter(Categorii);

@@ -1,14 +1,11 @@
 import React from "react";
 
-
-
 export default function NavBar() {
     let url1 = "/";
     let url2 = "/Carti";
     let url3 = "/Membrii"
     let url4 = "/Categorii"
     let url5 = "/Imprumuturi"
-
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container">

@@ -38,7 +38,6 @@ export default function CategoriiMeniu () {
             <NavBar />
             <TitluPagini titlu="Categorii" />
             <div style={{width: '100%', textAlign: 'center'}}>
-                {/* <div style={{justifyContent: 'center', margin: 'auto', width: "50%", display: 'flex', flexDirection: 'row', borderStyle:"solid"}} > */}
                 <div className="subMeniu">    
                     <Buton onClick={AddCategoryClick} name="Adauga Categorie"/>
                     <Buton onClick={DeleteCategoryClick} name="Sterge Categorie"/>

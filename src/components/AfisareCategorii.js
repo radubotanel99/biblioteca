@@ -1,33 +1,29 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
 import NavBar from './NavBar';
-import { Table, Tag, Space, List, Avatar } from 'antd'
+import { Table } from 'antd'
 
 class AfisareCategorii extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
             posts: []
         }
     }
-
     componentDidMount() {
         let url = "http://localhost:3001/afisareCategorii";
         const { categorie } = this.props.match.params
 
         fetch(url, {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            mode: 'cors', // no-cors, *co   rs, same-origin
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', // include, *same-origin, omit
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin', 
             headers: {
                 'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            redirect: 'follow', // manual, *follow, error
-            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            // body data type must match "Content-Type" header
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer', 
             body: JSON.stringify({ categorie })
         })
             .then((response) => response.json())
@@ -35,10 +31,7 @@ class AfisareCategorii extends React.Component {
                 this.setState({ posts: data });
             });
     }
-
-
     render() {
-
         const columns = [
             {
                 title: 'Titlu',
@@ -73,8 +66,6 @@ class AfisareCategorii extends React.Component {
 
         const data = this.state.posts
         return (
-
-            // this.state.posts.map((post) =>
                 <div>
                     <NavBar />
                     <div style={{marginTop: 50}}></div>
@@ -82,11 +73,7 @@ class AfisareCategorii extends React.Component {
                     <Table pagination={{ pageSize: 50}} style={{width: '200%', paddingLeft: '5%'}} columns={columns} dataSource={data} />
                     </div>
                 </div>
-
-            // )
         );
     }
-
 }
-
 export default withRouter(AfisareCategorii);

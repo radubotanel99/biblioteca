@@ -2,10 +2,7 @@ import React from 'react';
 import c8 from '../images/buna.jpg';
 import NavBar from './NavBar';
 
-
-
 function Home() {
-
     let url1 = "/Administrare";
     return (
         <div >
@@ -18,8 +15,6 @@ function Home() {
             <div  className="alegere" ><p></p ></div>
             </div>
         </div>
-
     );
 }
-
 export default Home;

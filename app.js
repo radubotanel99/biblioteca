@@ -24,7 +24,6 @@ var con = mysql.createConnection({
 app.get ('/categorie', (req, res) => {
 
   var sql = "Select * from category";
-  //var VALUES=[[req.body.id,req.body.titlu,req.body.descriere,req.body.postare]]
   con.query(sql, function (err, result) {
     if (err) throw err;
     res.send(result);
@@ -32,22 +31,18 @@ app.get ('/categorie', (req, res) => {
   
 })
 
-
 app.get ('/titlu', (req, res) => {
 
   var sql = "Select DISTINCT titlu from book";
-  //var VALUES=[[req.body.id,req.body.titlu,req.body.descriere,req.body.postare]]
   con.query(sql, function (err, result) {
     if (err) throw err;
     res.send(result);
   });
-  
 })
 
 app.get ('/membru', (req, res) => {
 
   var sql = "Select nume from user";
-  //var VALUES=[[req.body.id,req.body.titlu,req.body.descriere,req.body.postare]]
   con.query(sql, function (err, result) {
     if (err) throw err;
     res.send(result);
@@ -63,7 +58,6 @@ app.post('/AddBook', (req, res) => {
       if (err) throw err;
       if (result.length !== 0) res.send({status: 'Cartea exista!'});
       else {
-
           var verif_numar = "select * from book where nr_carte=?"
           var verificare_numar = [req.body.numar_carte];
           con.query(verif_numar, verificare_numar, function (err, result_numar) {
@@ -78,7 +72,6 @@ app.post('/AddBook', (req, res) => {
                 var VALUES = [[req.body.titlu, req.body.autor, req.body.numar_carte, req.body.editura, result[0].id_categorie, req.body.pret]]
                 con.query(sql1, [VALUES], function (err, result) {
                   if (err) throw err;
-                  console.log("1 record inserted here");
                   res.send({ status: 'ok' })
                 });
               })
@@ -94,14 +87,12 @@ app.post('/AddUser', (req, res) => {
     var val = [[req.body.nume]];
     con.query(sql, val, function(err, result) {
       if (err) throw err;
-      console.log(result.length);
       if(result.length !== 0) res.send({status: 'Acest membru exista!'});
       else {
         var sql1 = "INSERT INTO user (nume, adresa, telefon) VALUES ?";
         var VALUES = [[req.body.nume, req.body.adresa, req.body.numar_telefon]]
         con.query(sql1, [VALUES], function (err, result) {
           if (err) throw err;
-          console.log("1 record inserted here");
           res.send({ status: 'ok' })
         });
       }
@@ -110,8 +101,6 @@ app.post('/AddUser', (req, res) => {
 
 
 app.post('/AddRent', (req, res) => {
-  
-  // console.log(req.body.carte, req.body.user);
   const data_de_azi = new Date();
 
   var sql1 = "SELECT * FROM book WHERE titlu=? and nr_carte=?"
@@ -123,8 +112,6 @@ app.post('/AddRent', (req, res) => {
         res.send({status: 'Nu exista aceasta carte cu acest numar!'});
     }
     else {
-
-
       var sql_verificare = "SELECT data_returnare FROM imprumut WHERE nume=? and data_returnare='0000-00-00 00:00:00'";
       var name = [req.body.user];
       con.query(sql_verificare, name, function(err, result) {
@@ -143,7 +130,6 @@ app.post('/AddRent', (req, res) => {
               var VALUES2 = [[req.body.user]]
               con.query(sql2, [VALUES2], function (err, result2) {
                 if (err) throw err;
-
 
                 var verif_imprumut = "select * from imprumut where titlu=? and nr_carte=? and data_returnare='0000-00-00 00:00:00'";
                 var valori = [req.body.carte, req.body.numar_carte];
@@ -330,21 +316,15 @@ app.post('/afisareCarte', (req, res) => {
       if (err) throw err;
       var i = 0;
       result.forEach(element => {
-        // console.log(element.titlu);
           var sql = "select nume from imprumut where titlu=? and nr_carte=? and data_returnare='0000-00-00 00:00:00'";
           var valori = [result[i].titlu, result[i].nr_carte]
           con.query(sql, valori, function (err, result1) {
           if (err) throw err;
           if (result1.length > 0) {
-            // element.nume_imprumutant = result1[0].nume;
-            // console.log(element.nume_imprumutant);
-            // element.push({nume_imprumutant: result1[0].nume});
             element = {nume_imprumutant: result1[0].nume};
           }
         });
       });
-      console.log(typeof result[0]);
-      console.log('\n', result[0]);
       res.send(result);
     });  
 });
@@ -410,8 +390,6 @@ app.post('/search', (req, res) => {
     });
 });
 
-
-
-  app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
-  });
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+});
