@@ -33,15 +33,15 @@ export default function AddRent() {
     function insertRent(event) {
         event.preventDefault();
         const data = {
-            carte: carte.current.value,
+            //carte: carte.current.value,
             user: user.current.value,
             numar_carte: numar_carte.current.value
         }
         var verif = 1;
-        if (data.carte.length === 0) {
-            verif = 0;
-            alert('Nu ati completat cartea');
-        } 
+        // if (data.carte.length === 0) {
+        //     verif = 0;
+        //     alert('Nu ati completat cartea');
+        // } 
         if (data.numar_carte.length === 0) {
             verif = 0;
             alert('Nu ati completat numarul cartii');
@@ -89,7 +89,7 @@ export default function AddRent() {
                         <form onSubmit={insertRent}>
                             <div className="col-lg-8">
                                 <div className="card my-4">
-                                    <h5 className="card-header">Titlu carte:</h5>
+                                    {/* <h5 className="card-header">Titlu carte:</h5>
                                     <div className="card-body">
                                         <div className="form-group">
                                             <input list="carti" className="form-control" rows="1" ref={carte}></input>
@@ -97,7 +97,7 @@ export default function AddRent() {
                                                 {titlu.map(carte => <option>{carte.titlu}</option>)}
                                             </datalist>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <h5 className="card-header">Numar carte:</h5>
                                     <div className="card-body">
                                         <div className="form-group">

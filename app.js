@@ -103,13 +103,13 @@ app.post('/AddUser', (req, res) => {
 app.post('/AddRent', (req, res) => {
   const data_de_azi = new Date();
 
-  var sql1 = "SELECT * FROM book WHERE titlu=? and nr_carte=?"
-  var VALUES1 = [req.body.carte, req.body.numar_carte];
+  var sql1 = "SELECT * FROM book WHERE nr_carte=?"
+  var VALUES1 = [req.body.numar_carte];
   con.query(sql1, VALUES1, function (err, result) {
     if (err) throw err;
 
     if (result.length === 0) {
-        res.send({status: 'Nu exista aceasta carte cu acest numar!'});
+        res.send({status: 'Nu exista nicio carte cu acest numar!'});
     }
     else {
       var sql_verificare = "SELECT data_returnare FROM imprumut WHERE nume=? and data_returnare='0000-00-00 00:00:00'";
@@ -117,12 +117,12 @@ app.post('/AddRent', (req, res) => {
       con.query(sql_verificare, name, function(err, result) {
         if (err) throw err;
         
-        if (result.length >= 3) {
+        if (result.length >= 100) {
           res.send({status: 'Acest membru a imprumutat prea multe carti!'});
         }
         else {
-            var sql1 = "SELECT id_book FROM book WHERE titlu=? and nr_carte=?";
-            var VALUES1 = [req.body.carte, req.body.numar_carte];
+            var sql1 = "SELECT id_book FROM book WHERE nr_carte=?";
+            var VALUES1 = [req.body.numar_carte];
             con.query(sql1, VALUES1, function (err, result1) {
               if (err) throw err;
 
@@ -131,8 +131,8 @@ app.post('/AddRent', (req, res) => {
               con.query(sql2, [VALUES2], function (err, result2) {
                 if (err) throw err;
 
-                var verif_imprumut = "select * from imprumut where titlu=? and nr_carte=? and data_returnare='0000-00-00 00:00:00'";
-                var valori = [req.body.carte, req.body.numar_carte];
+                var verif_imprumut = "select * from imprumut where nr_carte=? and data_returnare='0000-00-00 00:00:00'";
+                var valori = [req.body.numar_carte];
                 con.query(verif_imprumut, valori, function(err, rezultat) {
                   if(err) throw err;
                   if(rezultat.length !== 0) {
