@@ -33,15 +33,15 @@ export default function FinRent() {
     function finalizeazaRent(event) {
         event.preventDefault();
         const data = {
-            carte: carte.current.value,
+            //carte: carte.current.value,
             user: user.current.value,
             numar_carte: numar_carte.current.value
         }
         var verif = 1;
-        if (data.carte.length === 0) {
-            alert('Nu ati completat cartea');
-            verif = 0;
-        } 
+        // if (data.carte.length === 0) {
+        //     alert('Nu ati completat cartea');
+        //     verif = 0;
+        // } 
         if (data.user.length === 0) {
             alert('Nu ati completat membrul');
             verif = 0;

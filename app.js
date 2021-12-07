@@ -167,8 +167,8 @@ app.post ('/FinRent', (req, res) => {
         res.send({status: 'Acest membru nu exista!'})
       }
       else {
-        var verif_carte = "select * from book where titlu=? and nr_carte=?";
-        var var_carte = [req.body.carte, req.body.numar_carte];
+        var verif_carte = "select * from book where nr_carte=?";
+        var var_carte = [req.body.numar_carte];
         con.query(verif_carte, var_carte, function(err, result2) {
           if(err) throw err;
           if(result2.length === 0) {
@@ -176,12 +176,12 @@ app.post ('/FinRent', (req, res) => {
           } 
           else {
 
-            var take_nr_carte = "select * from imprumut where nume=? and titlu=? and nr_carte=? and data_returnare='0000-00-00 00:00:00'";
-            var valori = [req.body.user, req.body.carte, req.body.numar_carte];
+            var take_nr_carte = "select * from imprumut where nume=? and nr_carte=? and data_returnare='0000-00-00 00:00:00'";
+            var valori = [req.body.user, req.body.numar_carte];
             con.query(take_nr_carte, valori, function(err, result3) {
               if (err) throw err;
               if(result3.length === 0) {
-                res.send({status: 'Acest membru nu are imprumutata aceasta carte!'});
+                res.send({status: 'Acest membru nu are aceasta carte imprumutata!'});
               }
               else {
 
