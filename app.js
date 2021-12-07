@@ -390,6 +390,21 @@ app.post('/search', (req, res) => {
     });
 });
 
+app.post('/searchByNumber', (req, res) => {
+
+  var sql2 = ('SELECT * FROM book WHERE nr_carte=?');
+  var VALUES = [[req.body.numar]]
+  con.query(sql2, [VALUES], function (err, result) {
+    if (err) throw err;
+    if (result.length === 0) {
+      res.send({ status: 'no-ok' })
+    }
+    else {
+      res.send({ status: result[0].titlu })
+    }
+  });
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 });

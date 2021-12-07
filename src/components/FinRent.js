@@ -88,7 +88,7 @@ export default function FinRent() {
                         <form onSubmit={finalizeazaRent}>
                             <div className="col-lg-8">
                                 <div className="card my-4">
-                                    <h5 className="card-header">Titlu carte:</h5>
+                                    {/* <h5 className="card-header">Titlu carte:</h5>
                                     <div className="card-body">
                                         <div className="form-group">
                                             <input list="carti" className="form-control" rows="1" ref={carte}></input>
@@ -96,7 +96,7 @@ export default function FinRent() {
                                                 {titlu.map(carte => <option>{carte.titlu}</option>)}
                                             </datalist>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <h5 className="card-header">Numar carte:</h5>
                                     <div className="card-body">
                                         <div className="form-group">

@@ -3,6 +3,7 @@ import NavBar from './NavBar';
 import Search from './Search';
 import c8 from '../images/try.jfif';
 import Contact from './Contact';
+import SearchByNumber from './SearchByNumber';
 
 export default function FirstPage() {
     return (
@@ -24,6 +25,7 @@ export default function FirstPage() {
                     </div>
                 </div>
                 <Search />
+                <SearchByNumber />
                 <Contact />
             </div>
         </div>

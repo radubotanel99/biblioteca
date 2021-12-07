@@ -11288,6 +11288,13 @@ textarea.form-control-lg {
   width: 1100px;
 }
 
+.searchByNumberPozition {
+  position: absolute;
+  top: 30.5%;
+  left: 66%;
+  width: 1100px;
+}
+
 .categoriesPozition {
   position: absolute;
   top: 35.5%;
@@ -11302,7 +11309,7 @@ textarea.form-control-lg {
 
 .widgetPozition {
   position: absolute;
-  top: 45.5%;
+  top: 60.5%;
   left: 66%;
   width: 1100px;
 }
