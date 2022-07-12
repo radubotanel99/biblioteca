@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom'
 import { Table } from 'antd'
 import { ExportReactCSV } from './ExportReactCSV'
+import {ExportReactWord} from './ExportReactWord'
 
 class ToateCartile extends React.Component {
     constructor(props) {
@@ -74,8 +75,11 @@ class ToateCartile extends React.Component {
         return (
             <div>
                 <div>
-                    <div style={{marginTop: 20, marginRight: 30, float: 'right'}}>
+                    <div style={{marginTop: 20, marginRight: 30, marginBottom: 10,  float: 'right'}}>
                         <ExportReactCSV csvData={data} fileName={'Books'} />
+                    </div>
+                    <div style={{marginTop: 20, marginRight: 30, marginBottom: 10, float: 'right'}}>
+                        <ExportReactWord csvData={data} fileName={'BooksWord'} />
                     </div>
                     <h1 style={{paddingLeft: '5%', marginTop: '50px', fontSize: '30px'}}>Cartile bibliotecii:</h1>
                     <div>

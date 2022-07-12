@@ -1,3 +1,5 @@
+// import * as fs from "fs";
+var fs = require('fs');
 var bodyParser = require('body-parser');
 
 const express = require('express');
@@ -6,8 +8,8 @@ var cors = require('cors');
 var app = express();
 
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(bodyParser.json({ limit: '50mb' }));
 
 const port = 3001;
 
@@ -349,7 +351,7 @@ app.post('/afisareCategorii', (req, res) => {
 app.post('/toateCartile', (req, res) => {
 
     // var sql1 = "SELECT * FROM book";
-    var sql1 = "SELECT * FROM book LEFT JOIN category ON book.categorie = category.id_categorie order by titlu";
+    var sql1 = "SELECT * FROM book LEFT JOIN category ON book.categorie = category.id_categorie order by nr_carte";
     con.query(sql1, function (err, result) {
       if (err) throw err;
       res.send(result);
@@ -402,6 +404,68 @@ app.post('/searchByNumber', (req, res) => {
     else {
       res.send({ status: result[0].titlu })
     }
+  });
+});
+
+
+
+const docx = require('docx');
+const { table } = require('console');
+// const express = require("@runkit/runkit/express-endpoint/1.0.0");
+// const app = express(exports);
+
+const { Document, Packer, Paragraph, Table, TableCell, TableRow, TextRun } = docx;
+
+app.post('/exportToWord', async (req, res) => {
+  const initialTable = req.body.table;
+
+  const table = new Table({
+    rows: [
+        new TableRow({
+            children: [
+                new TableCell({
+                    children: [],
+                 }),
+            ],
+        }),
+      ],
+  });
+
+  initialTable.forEach(element => {
+    table.addChildElement(
+      new TableCell({
+        children: [
+          new Paragraph("Nr carte: " + element['nr_carte'] ),
+          new Paragraph("Titlu: " + element['titlu'] ),
+          new Paragraph("Autor: " + element['autor'] ),
+          new Paragraph("Editura: " + element['editura'] ),
+          new Paragraph("Categorie: " + element['categorie'] ),
+          new Paragraph("Pret: " + element['pret'] ),
+          new Paragraph(""),
+          new Paragraph(""),
+          ],
+      }),
+    );
+    
+  });
+
+  const doc = new Document({
+      sections: [{
+          children: [table],
+      }],
+  });
+
+  const b64string = await Packer.toBase64String(doc);
+  res.setHeader('Content-Disposition', 'attachment; filename=My Document.docx');
+  
+  Packer.toBuffer(doc).then((buffer) => {
+    try {
+      fs.writeFileSync("My Document.docx", buffer);
+      res.send({status: "ok"})
+  } catch (err) {
+      res.send({status: "notOk"})
+      console.log('Error writing Word Document: ' + err.message)
+  }
   });
 });
 
