@@ -24,7 +24,7 @@ export default function Search() {
             body: JSON.stringify(data) 
         }).then(response => response.json())
             .then(data => {
-                if (data.status === 'ok') {
+                if (data.status !== 'ok') {
                     try {
                         history.push(`/search/${titlu.current.value}`);
                     } catch (e) {

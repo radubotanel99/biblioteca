@@ -24,8 +24,8 @@ export default function FirstPage() {
                         </div>
                     </div>
                 </div>
-                <Search />
                 <SearchByNumber />
+                <Search />
                 <Contact />
             </div>
         </div>
