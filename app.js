@@ -106,7 +106,7 @@ app.post('/AddRent', (req, res) => {
   const data_de_azi = new Date();
 
   // just for testing
-  data_de_azi.setDate(data_de_azi.getDate()-100);
+  // data_de_azi.setDate(data_de_azi.getDate()-100);
 
   var sql1 = "SELECT * FROM book WHERE nr_carte=?"
   var VALUES1 = [req.body.numar_carte];
