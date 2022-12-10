@@ -2,6 +2,22 @@ import React from 'react';
 import { withRouter } from 'react-router-dom'
 import { Table } from 'antd'
 
+function checkIfDateIsTooLong(date) {
+    let todayDate = new Date();
+    todayDate.setDate(todayDate.getDate()-14);
+    let rentDate = new Date(date);
+    return todayDate > rentDate ? true : false;
+}
+
+function changeDateFormat(rentDate) {
+    let intermediatDate = rentDate;
+    intermediatDate = intermediatDate.substring(0, 10);
+    const arrayDate = intermediatDate.split("-");
+    let formattedRentDate = arrayDate[2] + '.' + arrayDate[1] + '.' + arrayDate[0];
+    rentDate = formattedRentDate;
+    return rentDate;
+}
+
 class RentBooks extends React.Component {
     constructor(props) {
         super(props);
@@ -9,6 +25,7 @@ class RentBooks extends React.Component {
             posts: []
         }
     }
+
     componentDidMount() {
         let url = "http://localhost:3001/cartiImprumutate";
         const { titlu } = this.props.match.params
@@ -27,9 +44,6 @@ class RentBooks extends React.Component {
         })
             .then((response) => response.json())
             .then(data => {
-                for (var i=0; i<data.length; i++) {
-                    data[i].data_imprumut = data[i].data_imprumut.substring(0, 10);
-                }
                 this.setState({ posts: data });
             });
     }
@@ -40,9 +54,6 @@ class RentBooks extends React.Component {
                 title: 'Nume',
                 dataIndex: 'nume',
                 key: 'titlu',
-                // render: (titlu) => {
-                //     return <a><Link to={`/carte/${titlu}`}>{titlu}</Link></a>
-                // }
             },
             {
                 title: 'Titlu carte',
@@ -58,6 +69,10 @@ class RentBooks extends React.Component {
                 title: 'Data imprumut',
                 dataIndex: 'data_imprumut',
                 key: 'categorie',
+                render: (rentDate) => 
+                checkIfDateIsTooLong(rentDate) === true ? 
+                    <p style={{color: 'red', fontWeight: 'bold'}}>{changeDateFormat(rentDate)}</p>
+                    : <p style={{color: 'blue'}}>{changeDateFormat(rentDate)}</p>,
             },
         ];
         const data = this.state.posts
@@ -66,7 +81,11 @@ class RentBooks extends React.Component {
                     <div style={{marginTop: 50}}></div>
                     <h1 style={{paddingLeft: '5%', marginTop: '50px', fontSize: '30px'}}>Cartile imprumutate:</h1>
                     <div>
-                    <Table pagination={{ pageSize: 50}} style={{width: '200%', paddingLeft: '5%'}} columns={columns} dataSource={data} />
+                    <Table 
+                        pagination={{ pageSize: 50}} 
+                        style={{width: '200%', paddingLeft: '5%', color: 'red'}}
+                        columns={columns} 
+                        dataSource={data} />
                     </div>
                 </div>
         );

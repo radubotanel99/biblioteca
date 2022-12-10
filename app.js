@@ -105,10 +105,13 @@ app.post('/AddUser', (req, res) => {
 app.post('/AddRent', (req, res) => {
   const data_de_azi = new Date();
 
+  // just for testing
+  data_de_azi.setDate(data_de_azi.getDate()-100);
+
   var sql1 = "SELECT * FROM book WHERE nr_carte=?"
   var VALUES1 = [req.body.numar_carte];
   con.query(sql1, VALUES1, function (err, result) {
-    if (err) throw err;
+    if (err) throw err; 
 
     if (result.length === 0) {
         res.send({status: 'Nu exista nicio carte cu acest numar!'});
