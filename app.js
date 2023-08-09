@@ -410,6 +410,15 @@ app.post('/searchByNumber', (req, res) => {
   });
 });
 
+app.get('/getBiggestBookNumber', (req, res) => {
+
+  var sql = "SELECT MAX(nr_carte) as maxim FROM book";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log(result)
+    res.send(result);
+  })
+});
 
 
 const docx = require('docx');

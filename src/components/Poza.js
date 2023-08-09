@@ -1,5 +1,5 @@
 import React from "react";
-import image from '../images/trandafir.jpg'
+import image from '../images/carti.jpg'
 
 export default function Poza () {
     return (

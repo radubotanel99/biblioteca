@@ -8,6 +8,14 @@ export default function AddBook() {
     const categorie = createRef();
     const pret = createRef();
 
+    const [nr_carte, setNrCarte] = useState(0);
+    useEffect(() => {
+        fetch("http://localhost:3001/getBiggestBookNumber")
+            .then(res => res.json())
+            .then(data => setNrCarte(data[0].maxim))
+        }
+        , []);
+
     const [categorii, setCategorii] = useState([])
 
     useEffect(() => {
@@ -88,6 +96,7 @@ export default function AddBook() {
             <div>
                 <div className="adaugaPostare" >
                     <div className="container">
+                        <p style={{ fontSize: 'larger', fontWeight: 'bold', color: 'blue' }}>Numarul cel mai mare este {nr_carte}.</p>
                         <h1 className="card-header">Adauga o noua carte:</h1>
                         <form onSubmit={insertBook}>
                             <div className="col-lg-8">
