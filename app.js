@@ -382,8 +382,10 @@ app.post('/categorii', (req, res) => {
 
 app.post('/search', (req, res) => {
 
-    var sql2 = (`SELECT * FROM book WHERE titlu LIKE N'%${req.body.titlu}%'`);
-    var VALUES = [[req.body.titlu]]
+    // var sql2 = (`SELECT * FROM book WHERE titlu LIKE N'%${req.body.titlu}%'`);
+    var sql2 = (`SELECT * FROM book WHERE titlu LIKE ?`);
+    var VALUES = [['\'%' + req.body.titlu + '%\'']]
+    console.log(sql2 + VALUES)
     con.query(sql2, [VALUES], function (err, result) {
       if (err) throw err;
       if (result.length === 0) {
@@ -406,6 +408,24 @@ app.post('/searchByNumber', (req, res) => {
     }
     else {
       res.send({ status: result[0].titlu })
+    }
+  });
+});
+
+app.post('/searchAuthor', (req, res) => {
+
+  var sql2 = ("SELECT * FROM book WHERE autor LIKE ?");
+  var VALUES = [['\'%' + req.body.author + '%\'']]
+  console.log(sql2 + VALUES)
+  con.query(sql2, [VALUES], function (err, result) {
+    if (err) throw err;
+    if (result.length === 0) {
+      console.log('no result')
+      res.send({ status: 'no-ok' })
+    }
+    else {
+      console.log(result[0].titlu)
+      res.send({ status: 'ok' })
     }
   });
 });

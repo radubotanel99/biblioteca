@@ -54,7 +54,7 @@ export default function AdaugaCategorie() {
                                 <h5 className="card-header">Categorie:</h5>
                                 <div className="card-body">
                                     <div className="form-group">
-                                        <input className="form-control" rows="1" ref={categorie}></input>
+                                        <input className="form-control" rows="2" ref={categorie}></input>
                                     </div>
                                 </div>
                             </div>

@@ -4,6 +4,7 @@ import Search from './Search';
 import c8 from '../images/try.jfif';
 import Contact from './Contact';
 import SearchByNumber from './SearchByNumber';
+import SearchByAuthor from './SearchAuthor';
 
 export default function FirstPage() {
     return (
@@ -26,6 +27,7 @@ export default function FirstPage() {
                 </div>
                 <SearchByNumber />
                 <Search />
+                {/* <SearchByAuthor /> */}
                 <Contact />
             </div>
         </div>
